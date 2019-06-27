@@ -17,10 +17,7 @@ pipeline {
   stages {
     stage('clone code') {
       steps {
-        script {
           git 'https://github.com/ShakilaNatarajan/MavenNexusProject.git'
-        }
-
       }
     }
     stage('mvn build') {
