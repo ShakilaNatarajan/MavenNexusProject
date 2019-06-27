@@ -13,7 +13,7 @@ pipeline {
     }
     stage('mvn build') {
       steps {
-        bat 'mvn clean install'
+        sh 'clean install'
       }
     }
     stage('publish to nexus') {
