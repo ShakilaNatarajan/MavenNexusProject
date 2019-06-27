@@ -13,10 +13,7 @@ pipeline {
     }
     stage('mvn build') {
       steps {
-        script {
-          sh "mvn package -DskipTests=true"
-        }
-
+        bat 'mvn clean install'
       }
     }
     stage('publish to nexus') {
