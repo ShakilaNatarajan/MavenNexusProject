@@ -3,9 +3,7 @@ pipeline {
     agent {
         label "master"
     }
-    tools {
-        maven "Maven 3.6.0"
-    }
+   
     environment {
         NEXUS_VERSION = "nexus3"
       
