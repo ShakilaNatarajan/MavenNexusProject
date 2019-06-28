@@ -12,6 +12,11 @@ pipeline {
         sh 'mvn clean install'
       }
     }
+    stage('Artifact Job') {
+      steps {
+        build 'NexusBuild'
+      }
+    }
   }
   tools {
     maven 'Maven_Test'
