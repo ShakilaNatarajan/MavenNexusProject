@@ -11,14 +11,14 @@ pipeline {
 
       }
     }
-    stage('mvn build') {
-      steps {
-        script {
-          sh "mvn package -DskipTests=true"
-        }
+  //  stage('mvn build') {
+   //   steps {
+   //     script {
+    //      sh "mvn package -DskipTests=true"
+  //      }
 
-      }
-    }
+ //     }
+//    }
     stage('publish to nexus') {
       steps {
         script {
