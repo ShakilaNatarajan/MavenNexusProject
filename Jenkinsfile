@@ -29,3 +29,33 @@ pipeline {
     NEXUS_CREDENTIAL_ID = 'nexus-credentials'
   }
 }
+
+//Added by Jaya
+def server = Artifactory.server('1234')
+def downloadSpec = """{
+ "files": [
+  {
+      "pattern": "MyNexusPipeline/*.zip",
+      "target": "MyNexusPipeline/"
+    }
+ ]
+}"""
+server.download(downloadSpec)
+def uploadSpec = """{
+  "files": [
+    {
+      "pattern": "MyNexusPipeline/*.zip",
+      "target": "MyNexusPipeline"
+    }
+ ]
+}"""
+server.upload(uploadSpec)
+def buildInfo1 = server.download(downloadSpec)
+def buildInfo2 = server.upload(uploadSpec)
+buildInfo1.append(buildInfo2)
+server.publishBuildInfo(buildInfo1)
+
+def buildInfo = Artifactory.newBuildInfo()
+server.download(artifactoryDownloadDsl, buildInfo)
+server.upload(artifactoryUploadDsl, buildInfo)
+server.publishBuildInfo(buildInfo)
